@@ -1,2 +1,2 @@
-# ImageCup
+# PhotoCup
 SSU Android CapStone Project
