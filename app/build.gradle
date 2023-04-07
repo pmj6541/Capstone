@@ -1,0 +1,106 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id("kotlin-android")
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+    id 'kotlin-parcelize'
+}
+
+android {
+    compileSdk Config.COMPILE_SDK
+
+    defaultConfig {
+        applicationId "com.example.imagecup"
+        minSdk Config.MIN_SDK
+        targetSdk Config.TARGET_SDK
+        versionCode Config.VERSION_CODE
+        versionName Config.VERSION_NAME
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable true
+            buildConfigField 'boolean', 'IS_DEBUG', 'true'
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'boolean', 'IS_DEBUG', 'false'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    viewBinding {
+        enabled true
+    }
+    dataBinding {
+        enabled true
+    }
+    buildFeatures {
+        dataBinding true
+    }
+}
+
+dependencies {
+
+    implementation Dependencies.appcompat
+    implementation Dependencies.material
+    implementation Dependencies.constraintLayout
+    implementation Dependencies.junit
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation Dependencies.testExtJunit
+    androidTestImplementation Dependencies.espressoCore
+
+    implementation Dependencies.coreKtx
+    implementation Dependencies.activityKtx
+    implementation Dependencies.fragmentKtx
+    implementation Dependencies.lifecycleKtx
+    implementation Dependencies.navRuntime
+    implementation Dependencies.navFragment
+    implementation Dependencies.navUi
+    implementation Dependencies.viewModelKtx
+
+    implementation Dependencies.timber
+
+    implementation Dependencies.glide
+    annotationProcessor Dependencies.glideCompiler
+
+    implementation Dependencies.hiltAndroid
+    kapt Dependencies.hiltCompiler
+
+    implementation Dependencies.okhttp
+    implementation Dependencies.okhttpLogging
+
+    implementation Dependencies.retrofit
+    implementation Dependencies.retrofitAdapter
+    implementation Dependencies.retrofitConverter
+    implementation Dependencies.moshiConverter
+    implementation Dependencies.coroutineAdapter
+
+    implementation Dependencies.moshi
+    implementation Dependencies.moshiKotlin
+    kapt Dependencies.moshiCodegen
+
+    implementation Dependencies.serialization
+
+    annotationProcessor Dependencies.roomCompiler
+    implementation Dependencies.roomKtx
+    implementation Dependencies.roomGuava
+    implementation Dependencies.roomRuntime
+    kapt Dependencies.roomCompiler
+
+    implementation Dependencies.preferencesDatastore
+}
+kapt{
+    correctErrorTypes true
+}
